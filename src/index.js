@@ -1,0 +1,20 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+
+import './index.css';
+import App from './App';
+import registerServiceWorker from './registerServiceWorker';
+import reducer from './Store/reducer';
+
+const store = createStore(reducer);
+console.log('Creating Store')
+console.log('[Getting State from Store]',store.getState());
+
+store.subscribe(() => {
+    console.log('[Subscription]', store.getState());
+})
+
+ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
+registerServiceWorker();
